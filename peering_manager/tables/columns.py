@@ -125,11 +125,12 @@ class ActionsColumn(tables.Column):
                 )
 
         # Create the actions dropdown menu
+        toggle_attrs = 'data-bs-toggle="dropdown" data-bs-popper-config=\'{"strategy":"fixed"}\''
         if button and dropdown_links:
             html += (
                 f'<span class="btn-group">'
                 f"  {button}"
-                f'  <a class="btn btn-sm btn-{dropdown_class} dropdown-toggle dropdown-toggle-split" type="button" data-bs-toggle="dropdown" style="padding-left: 2px">'
+                f'  <a class="btn btn-sm btn-{dropdown_class} dropdown-toggle dropdown-toggle-split" type="button" {toggle_attrs} style="padding-left: 2px">'
                 f'  <span class="visually-hidden">Toggle Dropdown</span></a>'
                 f'  <ul class="dropdown-menu">{"".join(dropdown_links)}</ul>'
                 f"</span>"
@@ -139,7 +140,7 @@ class ActionsColumn(tables.Column):
         elif dropdown_links:
             html += (
                 f'<span class="btn-group dropdown">'
-                f'  <a class="btn btn-sm btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">'
+                f'  <a class="btn btn-sm btn-secondary dropdown-toggle" type="button" {toggle_attrs}>'
                 f'  <span class="visually-hidden">Toggle Dropdown</span></a>'
                 f'  <ul class="dropdown-menu">{"".join(dropdown_links)}</ul>'
                 f"</span>"
