@@ -41,14 +41,14 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
+        template = options["input"].read()
+        if not template.strip():
+            self.stderr.write("No configuration provided, file may be empty or waiting stdin input")
+            return
+
         if options["verbosity"] >= 2:
             self.stdout.write("[*] Loading template")
-        t = Configuration(
-            name="tmp",
-            template=options["input"].read(),
-            jinja2_trim=options["trim"],
-            jinja2_lstrip=options["lstrip"],
-        )
+        t = Configuration(name="tmp", template=template, jinja2_trim=options["trim"], jinja2_lstrip=options["lstrip"])
 
         routers = Router.objects.all()
         if options["limit"]:
