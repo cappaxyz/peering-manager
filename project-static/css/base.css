@@ -55,6 +55,7 @@ header.navbar {
     bottom: 0;
     box-shadow: inset calc(-1 * 1px) 0 0 0 var(--bs-border-color);
     overflow-y: auto;
+    align-items: flex-start;
   }
 }
 .navbar-brand {
